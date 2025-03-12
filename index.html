@@ -1,1 +1,451 @@
-This is not the web page your are looking for!
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&family=League+Script&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <meta property="og:title" content="Ines & Matija - Vjenčanje" />
+    <meta
+      property="og:description"
+      content="Ines i Matija vjenčat će se u petak 23.05.2025. u 18:00 u crkvi sv. Josipa Radnika u Gajnicama, Zagreb."
+    />
+    <meta property="og:image" content="hero.jpg" />
+    <meta property="og:type" content="website" />
+    <meta
+      name="description"
+      content="Ines i Matija vjenčat će se u petak 23.05.2025. u 18:00 u crkvi sv. Josipa Radnika u Gajnicama, Zagreb."
+    />
+    <meta name="keywords" content="vjenčanje, wedding, Ines, Matija, Zagreb" />
+
+    <style>
+      body {
+        font-family: 'Karla', sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+      }
+
+      .league-script-regular {
+        font-family: 'League Script', cursive;
+        font-weight: 400;
+        font-style: normal;
+        line-height: normal;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body class="h-screen w-screen text-[#795009] bg-[#faf8f5] overflow-x-hidden flex flex-col sm:flex-row sm:overflow-hidden">
+    <!-- Hero -->
+    <div id="hero" class="flex-1 relative bg-[url('gold.jpg')] bg-cover bg-center bg-no-repeat">
+      <div class="h-screen w-full bg-black/20">
+        <h1 class="league-script-regular text-8xl text-center pt-30 pl-8">Ines &&nbsp; Matija</h1>
+      </div>
+      <img class="absolute bottom-20 left-1/2 -translate-x-1/2" src="image.png" alt="Hero image" />
+    </div>
+
+    <div id="content" class="flex-1 sm:w-1/2 min-w-[350px] h-screen sm:overflow-y-auto">
+      <!-- Details -->
+      <div class="section min-h-full w-full flex flex-col items-center justify-center">
+        <div class="flex-1 flex flex-col justify-center items-center gap-6">
+          <h1 class="text-3xl flex flex-col items-center justify-center gap-1 mb-6">
+            <div>Petak</div>
+            <div>23. 05. 2025.</div>
+          </h1>
+          <h1 class="text-2xl mb-8">Zagreb, Hrvatska</h1>
+
+          <button
+            onclick="scrollToRSVP()"
+            class="border-2 border-[#795009] rounded-md px-4 py-2 text-lg flex flex-row items-center justify-center gap-2"
+          >
+            <i class="material-icons">how_to_reg</i>
+            Potvrdi dolazak
+          </button>
+        </div>
+
+        <div class="w-full h-[110px] bg-[url('bar.png')] bg-cover bg-center"></div>
+      </div>
+
+      <!-- Invitation -->
+      <div class="section min-h-full w-full flex flex-col items-center justify-center">
+        <div class="flex-1 flex flex-col justify-center items-center gap-6">
+          <h1 class="px-12 text-5xl text-center">Pozivnica</h1>
+          <div class="pt-12 px-12 text-xl text-justify">
+            Ines i Matija vjenčat će se u petak 23.05.2025. u crkvi sv. Josipa Radnika u Gajnicama, a večera i slavlje nastavit će se u
+            restoranu Lido, dvorana Hearts, na Jarunu.
+          </div>
+          <div class="pt-12 px-12 text-xl text-justify">Bili bi jako sretni da nam se pridružite u slavlju!</div>
+        </div>
+
+        <div class="w-full h-[110px] bg-[url('bar.png')] bg-cover bg-center"></div>
+      </div>
+
+      <!-- Schedule -->
+      <div class="section min-h-full w-full flex flex-col items-center justify-center">
+        <div class="flex-1 flex flex-col justify-center items-center gap-6">
+          <h1 class="p-6 text-5xl text-center">Raspored</h1>
+
+          <div class="pb-2 px-12 border-b-1 border-gray-300 text-2xl text-center">Petak, 23. Svibnja 2025.</div>
+
+          <div class="flex flex-col items-center justify-center">
+            <div class="text-2xl">Vjenčanje</div>
+            <div class="text-xl">18:00</div>
+          </div>
+
+          <div class="flex flex-row justify-center items-center gap-2 text-center">
+            <button
+              onclick="downloadICS({ title: 'Ines & Matija Vjenčanje', description: 'Vjenčanje i misa', location: 'Crkva sv. Josipa Radnika, Zagreb - Gajnice, Junkovićev put, Zagreb, Croatia', startDate: '20250523T160000Z' })"
+              class="border-1 border-gray-300 rounded-md px-4 py-2 flex flex-row items-center justify-center gap-2"
+            >
+              <i class="material-icons">add</i>
+              Dodaj u kalendar
+            </button>
+            <a
+              class="border-1 border-gray-300 rounded-md px-4 py-2 flex flex-row items-center justify-center gap-2"
+              href="https://www.google.com/maps/search/?api=1&query=%C5%BDupa+sv.+Josipa+Radnika%2C+Zagreb+-+Gajnice%2C+Junkovi%C4%87ev+put%2C+Zagreb%2C+Croatia"
+              target="_blank"
+            >
+              <i class="material-icons">directions</i>
+              Upute
+            </a>
+          </div>
+
+          <div class="w-full px-12 text-justify text-xl">Vjenčanje i misa održat će se u 18:00 u crkvi sv. Josipa Radnika u Gajnicama.</div>
+
+          <div class="px-12 flex flex-row justify-center items-center">
+            <div class="pr-6">
+              <i class="material-icons">pin_drop</i>
+            </div>
+            <div>
+              <a
+                class="underline"
+                href="https://www.google.com/maps/search/?api=1&query=%C5%BDupa+sv.+Josipa+Radnika%2C+Zagreb+-+Gajnice%2C+Junkovi%C4%87ev+put%2C+Zagreb%2C+Croatia"
+                target="_blank"
+              >
+                Župa sv. Josipa Radnika, Zagreb - Gajnice, Junkovićev put, Zagreb, Croatia
+              </a>
+            </div>
+          </div>
+
+          <div class="w-full px-12 mb-6">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2780.409300358026!2d15.8723265!3d45.8230873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d1ae4147bdab%3A0xaa6a4452359bf64c!2sThe%20parish%20of%20St.%20Joseph%20the%20Worker!5e0!3m2!1sen!2shr!4v1741451310592!5m2!1sen!2shr"
+              width="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <div class="flex flex-col items-center justify-center">
+            <div class="text-2xl">Večera</div>
+            <div class="text-xl">19:30</div>
+          </div>
+
+          <div class="flex flex-row justify-center items-center gap-2 text-center">
+            <button
+              onclick="downloadICS({ title: 'Ines & Matija Vjenčanje', description: 'Zabava', location: 'Restoran Lido, dvorana Hearts, Jarun, Zagreb, Croatia', startDate: '20250523T173000Z' })"
+              class="border-1 border-gray-300 rounded-md px-4 py-2 flex flex-row items-center justify-center gap-2"
+            >
+              <i class="material-icons">add</i>
+              Dodaj u kalendar
+            </button>
+            <a
+              class="border-1 border-gray-300 rounded-md px-4 py-2 flex flex-row items-center justify-center gap-2"
+              href="https://www.google.com/maps/place/Lido+event+%26+wedding+destination+-+sala+za+vjen%C4%8Danja+Zagreb/@45.781126,15.9355296,17z/data=!3m1!4b1!4m6!3m5!1s0x4765d4003bfbae19:0x9ff074847b94ab10!8m2!3d45.781126!4d15.9355296!16s%2Fg%2F1tdh2nnk?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+            >
+              <i class="material-icons">directions</i>
+              Upute
+            </a>
+          </div>
+
+          <div class="w-full px-12 text-justify text-xl">
+            Prijem i večera održat će se u restoranu Lido na Jarunu, dvorana Hearts, s početkom u 19:30
+          </div>
+
+          <div class="px-12 flex flex-row justify-center items-center">
+            <div class="pr-6">
+              <i class="material-icons">pin_drop</i>
+            </div>
+            <div>
+              <a
+                class="underline"
+                href="https://www.google.com/maps/place/Lido+event+%26+wedding+destination+-+sala+za+vjen%C4%8Danja+Zagreb/@45.781126,15.9355296,17z/data=!3m1!4b1!4m6!3m5!1s0x4765d4003bfbae19:0x9ff074847b94ab10!8m2!3d45.781126!4d15.9355296!16s%2Fg%2F1tdh2nnk?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+              >
+                Lido event & wedding destination - sala za vjenčanja Zagreb, Aleja Matije Ljubeka, Zagreb, Croatia
+              </a>
+            </div>
+          </div>
+
+          <div class="w-full px-12 mb-6">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2782.5041841989296!2d15.9355296!3d45.781126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d4003bfbae19%3A0x9ff074847b94ab10!2sLido%20event%20%26%20wedding%20destination%20-%20sala%20za%20vjen%C4%8Danja%20Zagreb!5e0!3m2!1sen!2shr!4v1741451512395!5m2!1sen!2shr"
+              width="100%"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="w-full h-[110px] bg-[url('bar.png')] bg-cover bg-center"></div>
+      </div>
+
+      <!-- RSVP -->
+      <div id="rsvp" class="section min-h-full w-full flex flex-col items-center justify-center">
+        <div class="flex-1 flex flex-col items-center justify-center">
+          <div>
+            <div class="flex-1 flex flex-col justify-center items-center gap-6 mb-6">
+              <h1 class="text-4xl text-center">Potvrdi dolazak</h1>
+            </div>
+
+            <form id="rsvp-form" class="px-6">
+              <table class="min-w-full table-auto">
+                <thead class="bg-[#d1c9a7]">
+                  <tr>
+                    <th class="p-2 border text-left">Ime</th>
+                    <th class="p-2 border text-left">Prezime</th>
+                    <th class="p-2 border text-center">Odrasli</th>
+                  </tr>
+                </thead>
+                <tbody id="attendees-body">
+                  <tr class="attendee-row">
+                    <td class="p-2 border">
+                      <input type="text" name="atFN[]" required class="w-full p-1 border rounded" />
+                    </td>
+                    <td class="p-2 border">
+                      <input type="text" name="atLN[]" required class="w-full p-1 border rounded" />
+                    </td>
+                    <td class="p-2 border text-center">
+                      <input type="checkbox" name="atAD[]" class="w-5 h-5 accent-[#795009]" />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="flex flex-row justify-between items-center mt-1 opacity-80">
+                <button id="addAttendee" type="button" class="border-1 border-[#795009] px-2 py-[2px]">
+                  <i class="material-icons" style="font-size: 12px">add</i>
+                </button>
+                <div id="attendee-count" class="text-center opacity-50">Dodajte sve osobe koje dolaze</div>
+                <button id="removeAttendee" type="button" class="border-1 border-[#795009] px-2 py-[2px]">
+                  <i class="material-icons" style="font-size: 12px">remove</i>
+                </button>
+              </div>
+
+              <div class="my-6">
+                <textarea name="notes" rows="3" placeholder="Napomena (npr. alergije)" class="w-full p-2 border"></textarea>
+              </div>
+
+              <div class="flex justify-center items-center">
+                <button
+                  type="submit"
+                  class="border-1 border-[#795009] rounded-md px-4 py-2 text-lg flex flex-row items-center justify-center gap-2"
+                >
+                  <i class="material-icons">send</i>
+                  Pošalji potvrdu
+                </button>
+              </div>
+            </form>
+
+            <div id="rsvp-success" class="px-6 hidden">
+              <h1 class="text-4xl text-center text-green-600">Hvala!</h1>
+              <p class="text-center text-xl text-green-600">Vaša potvrda je poslana.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full h-[110px] bg-[url('bar.png')] bg-cover bg-center"></div>
+      </div>
+
+      <!-- Footer -->
+      <div class="section w-full py-4 bg-[#333] text-white text-center flex flex-row justify-evenly items-center gap-4">
+        <div>
+          <div>Ines</div>
+          <div>098 190 2338</div>
+        </div>
+        <div>
+          <div>Matija</div>
+          <div>095 8264 100</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll button -->
+    <button
+      onclick="scrollToNext()"
+      id="scrollButton"
+      class="fixed bottom-4 right-4 w-12 h-12 bg-[#795009] text-white rounded-full opacity-60 cursor-pointer"
+    >
+      &#8595;
+    </button>
+
+    <script>
+      const contentElement = document.getElementById('content');
+
+      function scrollToRSVP() {
+        document.getElementById('rsvp').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function scrollToNext() {
+        let sections = document.querySelectorAll('.section');
+        let currentScroll = window.scrollY || contentElement.scrollTop || 0;
+
+        for (let i = 0; i < sections.length; i++) {
+          let sectionTop = sections[i].offsetTop;
+          if (sectionTop > currentScroll + 10) {
+            sections[i].scrollIntoView({ behavior: 'smooth' });
+            break;
+          }
+        }
+      }
+
+      function onScroll() {
+        let scrollButton = document.getElementById('scrollButton');
+        let documentHeight = document.documentElement.scrollHeight;
+        let contentHeight = contentElement.scrollHeight;
+        let totalHeight = Math.max(documentHeight, contentHeight);
+        let windowHeight = window.innerHeight;
+        let scrollPosition = window.scrollY || contentElement.scrollTop || 0;
+
+        if (scrollPosition + windowHeight >= totalHeight - 10) {
+          scrollButton.style.display = 'none';
+        } else {
+          scrollButton.style.display = 'block';
+        }
+      }
+
+      window.addEventListener('scroll', onScroll);
+      contentElement.addEventListener('scroll', onScroll);
+    </script>
+
+    <script>
+      async function addToDb(attendees, notes) {
+        const client = new Appwrite.Client();
+
+        const projectId = '67cf30a1002f720ecd8f';
+        const databaseId = '67cf31ef001439026c74';
+        const collectionId = '67cf32290020a4f94532';
+
+        client.setEndpoint('https://cloud.appwrite.io/v1').setProject(projectId);
+        const databases = new Appwrite.Databases(client);
+
+        // Create an array of promises for each attendee
+        const promises = attendees.map((attendee) => {
+          return databases.createDocument(databaseId, collectionId, Appwrite.ID.unique(), {
+            first_name: attendee.firstName,
+            last_name: attendee.lastName,
+            adult: attendee.adults,
+            note: notes,
+          });
+        });
+
+        // Wait for all promises to resolve
+        try {
+          await Promise.all(promises);
+
+          // Handle success
+          document.getElementById('rsvp-form').classList.add('hidden');
+          document.getElementById('rsvp-success').classList.remove('hidden');
+        } catch (error) {
+          // Handle errors
+          alert('Dogodila se greška, molimo pokušajte ponovno.');
+          console.log(error);
+        }
+      }
+
+      function addAttendee() {
+        const attendeesBody = document.getElementById('attendees-body');
+        const newRow = attendeesBody.insertRow();
+        newRow.innerHTML = `
+                <tr class="attendee-row">
+                  <td class="p-2 border">
+                    <input type="text" name="atFN[]" required class="w-full p-1 border rounded" />
+                  </td>
+                  <td class="p-2 border">
+                    <input type="text" name="atLN[]" required class="w-full p-1 border rounded" />
+                  </td>
+                  <td class="p-2 border text-center">
+                    <input type="checkbox" name="atAD[]" class="w-5 h-5 accent-[#795009]" />
+                  </td>
+                </tr>
+              `;
+      }
+
+      function removeAttendee() {
+        const attendeesBody = document.getElementById('attendees-body');
+        if (attendeesBody.rows.length <= 1) return;
+        if (attendeesBody.rows.length > 0) {
+          attendeesBody.deleteRow(attendeesBody.rows.length - 1);
+        }
+      }
+
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const form = document.getElementById('rsvp-form');
+        const formData = new FormData(form);
+
+        const firstNames = formData.getAll('atFN[]');
+        const lastNames = formData.getAll('atLN[]');
+        const adults = formData.getAll('atAD[]').map((val) => val === 'on');
+
+        const attendees = firstNames.map((firstName, i) => ({
+          firstName,
+          lastName: lastNames[i],
+          adults: adults[i] || false,
+        }));
+
+        const notes = formData.get('notes');
+
+        addToDb(attendees, notes);
+      }
+
+      document.getElementById('rsvp-form').addEventListener('submit', handleSubmit);
+      document.getElementById('addAttendee').addEventListener('click', addAttendee);
+      document.getElementById('removeAttendee').addEventListener('click', removeAttendee);
+    </script>
+
+    <script>
+      function downloadICS({ title, description, location, startDate }) {
+        const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${title}
+DESCRIPTION:${description}
+LOCATION:${location}
+DTSTART:${startDate}
+DTEND:${startDate}
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([icsContent], { type: 'text/calendar' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ines-matija-vjencanje.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    </script>
+  </body>
+</html>

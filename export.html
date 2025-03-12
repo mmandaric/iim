@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding</title>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@17.0.0"></script>
+  </head>
+  <body>
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Odrasli</th>
+          <th>Napomena</th>
+        </tr>
+      </thead>
+      <tbody id="attendees-body">
+
+      </tbody>
+    </table>
+
+    <script>
+      async function exportToDb() {
+        const client = new Appwrite.Client();
+
+        const projectId = '67cf30a1002f720ecd8f';
+        const databaseId = '67cf31ef001439026c74';
+        const collectionId = '67cf32290020a4f94532';
+
+        client.setEndpoint('https://cloud.appwrite.io/v1').setProject(projectId);
+        const databases = new Appwrite.Databases(client);
+
+        const result = await databases.listDocuments(databaseId, collectionId, []);
+        const attendees = result.documents;
+
+        attendees.forEach((attendee) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${attendee.first_name}</td><td>${attendee.last_name}</td><td>${attendee.adult}</td><td>${attendee.note}</td>`;
+          document.getElementById('attendees-body').appendChild(row);
+        });
+
+        console.log(result);
+      }
+
+      exportToDb();
+    </script>
+  </body>
+</html>
