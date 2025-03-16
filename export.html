@@ -32,16 +32,38 @@
         client.setEndpoint('https://cloud.appwrite.io/v1').setProject(projectId);
         const databases = new Appwrite.Databases(client);
 
-        const result = await databases.listDocuments(databaseId, collectionId, []);
-        const attendees = result.documents;
+        let allAttendees = [];
+        let offset = 0;
+        const limit = 100;
+        
+        // Keep fetching until we get all documents
+        while (true) {
+          const result = await databases.listDocuments(
+            databaseId, 
+            collectionId, 
+            [
+              Appwrite.Query.limit(limit),
+              Appwrite.Query.offset(offset)
+            ]
+          );
+          
+          allAttendees = [...allAttendees, ...result.documents];
+          
+          // If we got less documents than the limit, we've reached the end
+          if (result.documents.length < limit) {
+            break;
+          }
+          
+          offset += limit;
+        }
 
-        attendees.forEach((attendee) => {
+        allAttendees.forEach((attendee) => {
           const row = document.createElement('tr');
           row.innerHTML = `<td>${attendee.first_name}</td><td>${attendee.last_name}</td><td>${attendee.adult}</td><td>${attendee.note}</td>`;
           document.getElementById('attendees-body').appendChild(row);
         });
 
-        console.log(result);
+        console.log(allAttendees);
       }
 
       exportToDb();
